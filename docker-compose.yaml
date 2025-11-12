@@ -28,8 +28,8 @@ services:
   n8n-medvira-main-three:
     image: n8nio/n8n:1.118.2
     depends_on:
-      - postgres
-      - redis
+      - postgres-one
+      - redis-one
     volumes:
       - n8n_data:/home/node/.n8n
     restart: always
@@ -67,8 +67,8 @@ services:
   n8n-medvira-worker-three:
     image: n8nio/n8n:1.118.2
     depends_on:
-      - postgres
-      - redis
+      - postgres-one
+      - redis-one
     command: ["worker"]
     volumes:
       - n8n_data_worker:/home/node/.n8n_worker
