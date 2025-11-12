@@ -6,7 +6,7 @@ volumes:
 services:
   newn8nmainthree:
     image: n8nio/n8n:1.118.2
-    command: ["n8n","worker"]
+    command: ["worker"]
     volumes:
       - n8n_data:/home/node/.n8n
     restart: always
