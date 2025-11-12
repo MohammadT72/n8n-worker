@@ -3,13 +3,15 @@ version: '3'
 volumes:
   postgres_data:
 services:
-  postgres-three:
+  postgres-foure:
     image: postgres:17.2-alpine3.21
     restart: always
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=fGD4Kcy6ZnCt8RmNycN4S1AT
       - POSTGRES_DB=postgres
+      - POSTGRES_NON_ROOT_USER=changeUser
+      - POSTGRES_NON_ROOT_PASSWORD=changePassword
     volumes:
       - postgres_data:/var/lib/postgresql/data
     expose:
