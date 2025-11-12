@@ -1,12 +1,10 @@
 version: '3'
 
 volumes:
-  n8n_data:
-  n8n_data_worker:
   postgres_data:
   redis_data:
 services:
-  postgres-one:
+  postgres-two:
     image: postgres:15
     restart: always
     environment:
@@ -17,7 +15,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
     expose:
       - 5432
-  redis-one:
+  redis-two:
     image: redis:7-alpine
     restart: always
     command: ["redis-server", "--requirepass", "9y8YplW9jI8VxpI8knzVNkHe"]
@@ -25,82 +23,3 @@ services:
       - redis_data:/data
     expose:
       - 6379
-  n8n-medvira-main-three:
-    image: n8nio/n8n:1.118.2
-    depends_on:
-      - postgres-one
-      - redis-one
-    volumes:
-      - n8n_data:/home/node/.n8n
-    restart: always
-    environment:
-      # --- Core ---
-      - N8N_PORT=5678
-      - N8N_PROTOCOL=https
-      - NODE_ENV=production
-      - GENERIC_TIMEZONE=Asia/Tehran
-      - TZ=Asia/Tehran
-      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
-      - N8N_EXPRESS_TRUST_PROXY=true
-
-      # --- Encryption ---
-      - N8N_ENCRYPTION_KEY=CPU7+scl9M7vZxdx4pt/4T5YqCD52034
-
-      # --- Database ---
-      - DB_TYPE=postgresdb
-      - DB_POSTGRESDB_HOST=postgres
-      - DB_POSTGRESDB_PORT=5432
-      - DB_POSTGRESDB_USER=root
-      - DB_POSTGRESDB_PASSWORD=fGD4Kcy6ZnCt8RmNycN4S1AT
-      - DB_POSTGRESDB_DATABASE=postgres
-
-      # --- Queue Mode ---
-      - EXECUTIONS_MODE=queue
-      - OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS=true
-      - QUEUE_BULL_REDIS_HOST=redis
-      - QUEUE_BULL_REDIS_PORT=6379
-      - QUEUE_BULL_REDIS_PASSWORD=9y8YplW9jI8VxpI8knzVNkHe
-      - QUEUE_HEALTH_CHECK_ACTIVE=true
-      - N8N_RUNNERS_ENABLED=true
-    expose:
-      - 5678
-  n8n-medvira-worker-three:
-    image: n8nio/n8n:1.118.2
-    depends_on:
-      - postgres-one
-      - redis-one
-    command: ["worker"]
-    volumes:
-      - n8n_data_worker:/home/node/.n8n_worker
-    restart: always
-    environment:
-      # --- Core ---
-      - N8N_PORT=5678
-      - N8N_PROTOCOL=https
-      - NODE_ENV=production
-      - GENERIC_TIMEZONE=Asia/Tehran
-      - TZ=Asia/Tehran
-      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
-      - N8N_EXPRESS_TRUST_PROXY=true
-
-      # --- Encryption ---
-      - N8N_ENCRYPTION_KEY=CPU7+scl9M7vZxdx4pt/4T5YqCD52034
-
-      # --- Database ---
-      - DB_TYPE=postgresdb
-      - DB_POSTGRESDB_HOST=postgres
-      - DB_POSTGRESDB_PORT=5432
-      - DB_POSTGRESDB_USER=root
-      - DB_POSTGRESDB_PASSWORD=fGD4Kcy6ZnCt8RmNycN4S1AT
-      - DB_POSTGRESDB_DATABASE=postgres
-
-      # --- Queue Mode ---
-      - EXECUTIONS_MODE=queue
-      - OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS=true
-      - QUEUE_BULL_REDIS_HOST=redis
-      - QUEUE_BULL_REDIS_PORT=6379
-      - QUEUE_BULL_REDIS_PASSWORD=9y8YplW9jI8VxpI8knzVNkHe
-      - QUEUE_HEALTH_CHECK_ACTIVE=true
-      - N8N_RUNNERS_ENABLED=true
-    expose:
-      - 5678
