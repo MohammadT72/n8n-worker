@@ -4,12 +4,11 @@ volumes:
   n_data:
 
 services:
-  myn8neight:
+  myn8nnine:
     image: n8nio/n8n:1.118.2
     volumes:
       - n_data:/home/node/.n8n
     restart: always
-    command: "echo 'encryptionKey=6GaHFWpqUVMUU8JEK6Lg0FSmiZKuT2JV' > /home/node/.n8n/config"
     environment:
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - N8N_PORT=5678
