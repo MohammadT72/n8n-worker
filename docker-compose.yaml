@@ -9,6 +9,8 @@ services:
     volumes:
       - n_data:/home/node/.n8n
     restart: always
+    command: >
+      sh -c "echo 'encryptionKey=6GaHFWpqUVMUU8JEK6Lg0FSmiZKuT2JV' > /home/node/.n8n/config && n8n start"
     environment:
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - N8N_PORT=5678
@@ -29,7 +31,6 @@ services:
       - DB_POSTGRESDB_USER=root
       - DB_POSTGRESDB_PASSWORD=fGD4Kcy6ZnCt8RmNycN4S1AT
       - DB_POSTGRESDB_DATABASE=postgres
-      - N8N_ENCRYPTION_KEY=6GaHFWpqUVMUU8JEK6Lg0FSmiZKuT2JV
       - N8N_EXPRESS_TRUST_PROXY=true
     expose:
       - 5678
