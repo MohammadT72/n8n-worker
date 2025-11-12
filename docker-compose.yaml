@@ -5,7 +5,7 @@ volumes:
   n8n_data_worker:
 
 services:
-  myn8nelevennmain:
+  newn8nmain:
     image: n8nio/n8n:1.118.2
     volumes:
       - n8n_data:/home/node/.n8n
@@ -34,11 +34,10 @@ services:
       - N8N_ENCRYPTION_KEY=CPU7+scl9M7vZxdx4pt/4T5YqCD52034
     expose:
       - 5678
-  myn8nelevennworkermain:
+  newn8nworker:
     image: n8nio/n8n:1.118.2
     volumes:
       - n8n_data_worker:/home/node/.n8n_worker
-    command: worker
     restart: always
     environment:
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
