@@ -30,5 +30,6 @@ services:
       - DB_POSTGRESDB_PASSWORD=fGD4Kcy6ZnCt8RmNycN4S1AT
       - DB_POSTGRESDB_DATABASE=postgres
       - N8N_EXPRESS_TRUST_PROXY=true
+      - N8N_ENCRYPTION_KEY=CPU7+scl9M7vZxdx4pt/4T5YqCD52034
     expose:
       - 5678
