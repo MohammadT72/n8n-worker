@@ -9,8 +9,7 @@ services:
     volumes:
       - n_data:/home/node/.n8n
     restart: always
-    command: >
-      sh -c "echo 'encryptionKey=6GaHFWpqUVMUU8JEK6Lg0FSmiZKuT2JV' > /home/node/.n8n/config && n8n start"
+    command: "echo 'encryptionKey=6GaHFWpqUVMUU8JEK6Lg0FSmiZKuT2JV' > /home/node/.n8n/config"
     environment:
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - N8N_PORT=5678
