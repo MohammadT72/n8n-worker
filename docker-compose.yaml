@@ -4,7 +4,7 @@ volumes:
   n8n_data:
 
 services:
-  newn8nmainfour:
+  newn8nmainfive:
     image: n8nio/n8n:1.118.2
     command: ["worker"]
     volumes:
