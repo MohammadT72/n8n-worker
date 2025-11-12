@@ -25,7 +25,7 @@ services:
       - redis_data:/data
     expose:
       - 6379
-  n8n-medvira-main-two:
+  n8n-medvira-main-three:
     image: n8nio/n8n:1.118.2
     depends_on:
       - postgres
@@ -64,7 +64,7 @@ services:
       - N8N_RUNNERS_ENABLED=true
     expose:
       - 5678
-  n8n-medvira-worker-two:
+  n8n-medvira-worker-three:
     image: n8nio/n8n:1.118.2
     depends_on:
       - postgres
