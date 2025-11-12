@@ -4,7 +4,7 @@ volumes:
   n_data:
 
 services:
-  myn8nfour:
+  myn8nseven:
     image: n8nio/n8n:1.118.2
     volumes:
       - n_data:/home/node/.n8n
