@@ -2,7 +2,6 @@ version: '3'
 
 volumes:
   n8n_data:
-  n8n_data_worker:
 
 services:
   myn8nelevenn:
@@ -37,8 +36,6 @@ services:
   myn8nelevennworkerone:
     image: n8nio/n8n:1.118.2
     command: worker
-    volumes:
-      - n8n_data_worker:/home/node/.n8n
     restart: always
     environment:
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
